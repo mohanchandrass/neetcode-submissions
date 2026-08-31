@@ -1,0 +1,22 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        hmap = {}
+
+        left = 0
+        maxcount = 0
+        for right in range(len(s)):
+            hmap[s[right]] = hmap.get(s[right],0)+1
+            replacements = (right-left+1) - max(hmap.values())
+            print(s[right],replacements)
+            while replacements>k:
+                hmap[s[left]] = hmap.get(s[left],0)-1
+                left+=1
+                replacements = (right-left+1) - max(hmap.values())
+            
+            maxcount = max(maxcount,right-left+1)
+            
+            
+
+        return maxcount
+        
+            
